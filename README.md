@@ -11,9 +11,9 @@
 
 ## Usage
 
-    $ docker run --rm wernight/kubectl --help
+    $ docker run --rm dechaoz05/kubectl --help
 
-Note: Entrypoint is set to kubectl so do **not** type `wernight/kubectl kubectl`.
+Note: Entrypoint is set to kubectl so do **not** type `dechaoz05/kubectl kubectl`.
 
 ### Usage example 1
 
@@ -21,7 +21,7 @@ For example to access a local Kubernetes cluster you may run:
 
     $ docker run --rm --net=host --user $UID \
         -v ~/.kube:/config/.kube \
-        wernight/kubectl cluster-info
+        dechaoz05/kubectl cluster-info
 
   * `-net=host`: (optional) allows to connect to a local Kubernetes cluster.
   * `--user $UID`: (optional) by default runs as random UID `2342`, this allows to access your existing `~/.kube` if you have one. As you can note, you can run `kubectl` as any UID/GID.
@@ -33,7 +33,7 @@ Here we use the service-account, so this should work from within a Pod on your c
 
     $ docker run \
         -v /var/run/secrets/kubernetes.io/serviceaccount/:/var/run/secrets/kubernetes.io/serviceaccount/:ro \
-        wernight/kubectl \
+        dechaoz05/kubectl \
         -s https://kubernetes \
         --token="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
         --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
@@ -50,7 +50,7 @@ Here is a function POSIX-compatible that work for most shells:
       docker run --rm -it --user $UID:$GID \
         -v /var/run/secrets/kubernetes.io/serviceaccount:/var/run/secrets/kubernetes.io/serviceaccount:ro \
         -w /code -v "$PWD":/code:ro \
-        wernight/kubectl "$@"
+        dechaoz05/kubectl "$@"
     }
 
 ### Why use it
@@ -62,4 +62,4 @@ It's mostly meant to be used during continuous integration or as part of an auto
 
 ## Feedbacks
 
-Suggestions are welcome on our [GitHub issue tracker](https://github.com/wernight/docker-kubectl/issues).
+Suggestions are welcome on our [GitHub issue tracker](https://github.com/dechaoz05/docker-kubectl/issues).
